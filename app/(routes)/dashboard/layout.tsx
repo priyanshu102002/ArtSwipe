@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { api } from "@/convex/_generated/api";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
@@ -19,6 +19,7 @@ const DashboardLayout = ({
 		checkTeams();
 	}, [user?.email]);
 
+	// Checking in the database that the team is exist or not
 	const checkTeams = async () => {
 		const result = await convex.query(api.teams.getTeams, {
 			email: user?.email,
