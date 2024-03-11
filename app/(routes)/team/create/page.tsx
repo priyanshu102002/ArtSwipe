@@ -20,13 +20,13 @@ const CreatePage = () => {
 	const createNewTeam = () => {
 		createTeam({
 			teamName,
-			createdBy: user?.given_name,
+			createdBy: user?.email,
 		}).then((resp) => {
 			console.log(resp);
 			if (resp) {
 				// toast message that you created a new team successfully
-				toast("Team Created Successfully");
 				router.push("/dashboard");
+				toast("Team Created Successfully");
 			}
 		});
 	};

@@ -1,3 +1,4 @@
+// For Portected Routes (comming from kinde docs)
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";

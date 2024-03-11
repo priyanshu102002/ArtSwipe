@@ -16,8 +16,8 @@ const DashboardLayout = ({
 	const { user }: any = useKindeBrowserClient();
 
 	useEffect(() => {
-		checkTeams();
-	}, [user?.email]);
+		user && checkTeams();
+	}, [user]);
 
 	// Checking in the database that the team is exist or not
 	const checkTeams = async () => {

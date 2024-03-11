@@ -1,3 +1,5 @@
+// Came from convex docs (also wrap the convex client in the provider)
+
 "use client";
 import { ReactNode } from "react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";

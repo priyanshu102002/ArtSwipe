@@ -28,7 +28,7 @@ const DashboardPage = () => {
 			email: user?.email,
 		});
 		console.log("result : ", result);
-		if (result.length === 0) {
+		if (!result?.length) {
 			createUser({
 				name: user.given_name,
 				email: user.email,
