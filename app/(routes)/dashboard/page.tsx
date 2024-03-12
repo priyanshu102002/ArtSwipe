@@ -12,7 +12,6 @@ import React, { useEffect } from "react";
 const DashboardPage = () => {
 	const convex = useConvex();
 	const { user }: any = useKindeBrowserClient();
-	console.log("user : ", user);
 
 	// Creating the new User api pont
 	const createUser = useMutation(api.user.createUser);
