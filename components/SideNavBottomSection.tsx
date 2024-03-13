@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "./ui/input";
 
-const SideNavBottomSection = ({ onFileCreate }: any) => {
+const SideNavBottomSection = ({ onFileCreate, totalFiles }: any) => {
 	const menuList = [
 		{
 			id: 1,
@@ -83,10 +83,10 @@ const SideNavBottomSection = ({ onFileCreate }: any) => {
 				</DialogContent>
 			</Dialog>
 
-			<Progress className="mt-5 " value={33} />
+			<Progress className="mt-5 " value={(totalFiles/5)*100} />
 
 			<h2 className="text-[12px] mt-3">
-				<strong>1</strong> out of <strong>5</strong> files is used
+				<strong>{totalFiles}</strong> out of <strong>5</strong> files is used
 			</h2>
 			<h2 className="text-[12px]">
 				Upgrade your plan for unlimited access.
