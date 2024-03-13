@@ -1,9 +1,22 @@
+"use client";
+
 import { Archive, Flag, Github } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Progress } from "./ui/progress";
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "./ui/input";
 
-const SideNavBottomSection = () => {
+const SideNavBottomSection = ({ onFileCreate }: any) => {
 	const menuList = [
 		{
 			id: 1,
@@ -24,19 +37,62 @@ const SideNavBottomSection = () => {
 			path: "",
 		},
 	];
-	return <div>
-    {menuList.map((menu) => (
-      <h2 key={menu.id} className="flex gap-2 p-1 text-[14px] hover:bg-gray-100 rounded-md cursor-pointer"><menu.icon className="h-4 w-4" />{menu.name}</h2>
-    ))}
 
-    <Button className="w-full bg-blue-500 hover:bg-blue-700 justify-start mt-3">New File</Button>
+	const [fileInput, setFileInput] = useState("");
+	return (
+		<div>
+			{menuList.map((menu) => (
+				<h2
+					key={menu.id}
+					className="flex gap-2 p-1 text-[14px] hover:bg-gray-100 rounded-md cursor-pointer"
+				>
+					<menu.icon className="h-4 w-4" />
+					{menu.name}
+				</h2>
+			))}
 
-    <Progress className="mt-5 " value={33} />
+			<Dialog>
+				<DialogTrigger className="w-full" asChild>
+					<Button className="w-full bg-blue-500 hover:bg-blue-700 justify-start mt-3">
+						New File
+					</Button>
+				</DialogTrigger>
+				<DialogContent>
+					<DialogHeader>
+						<DialogTitle>Create New file</DialogTitle>
+						<DialogDescription>
+							<Input
+								className="mt-3"
+								placeholder="Enter File Name"
+								onChange={(e) => setFileInput(e.target.value)}
+							/>
+						</DialogDescription>
+					</DialogHeader>
+					<DialogFooter>
+						<DialogClose asChild>
+							<Button
+								type="button"
+								className="bg-blue-500 hover:bg-blue-700"
+								disabled={!(fileInput && fileInput.length > 2)}
+								onClick={() => onFileCreate(fileInput)}
+							>
+								Create
+							</Button>
+						</DialogClose>
+					</DialogFooter>
+				</DialogContent>
+			</Dialog>
 
-    <h2 className="text-[12px] mt-3"><strong>1</strong> out of <strong>5</strong> files is used</h2>
-    <h2 className="text-[12px]">Upgrade your plan for unlimited access.</h2>
+			<Progress className="mt-5 " value={33} />
 
-  </div>;
+			<h2 className="text-[12px] mt-3">
+				<strong>1</strong> out of <strong>5</strong> files is used
+			</h2>
+			<h2 className="text-[12px]">
+				Upgrade your plan for unlimited access.
+			</h2>
+		</div>
+	);
 };
 
 export default SideNavBottomSection;

@@ -1,4 +1,10 @@
-import { ChevronDown, LayoutGridIcon, LogOut, Settings, Users } from "lucide-react";
+import {
+	ChevronDown,
+	LayoutGridIcon,
+	LogOut,
+	Settings,
+	Users,
+} from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -20,7 +26,7 @@ export interface TEAM {
 	_id: String;
 }
 
-const SideNavTopSection = ({ user }: any) => {
+const SideNavTopSection = ({ user, setActiveTeamInfo }: any) => {
 	const menu = [
 		{
 			id: 1,
@@ -45,6 +51,10 @@ const SideNavTopSection = ({ user }: any) => {
 	useEffect(() => {
 		getTeamList();
 	}, [user]);
+
+	useEffect(() => {
+		activeTeam && setActiveTeamInfo(activeTeam);
+	}, [activeTeam]);
 
 	// fetching the team list data from backend
 	const getTeamList = async () => {
@@ -135,7 +145,13 @@ const SideNavTopSection = ({ user }: any) => {
 				</PopoverContent>
 			</Popover>
 			{/* All Button */}
-			<Button variant="outline" className="w-full justify-start gap-2 font-bold mt-8 bg-gray-100"><LayoutGridIcon className="h-5 w-5" />All files</Button>
+			<Button
+				variant="outline"
+				className="w-full justify-start gap-2 font-bold mt-8 bg-gray-100"
+			>
+				<LayoutGridIcon className="h-5 w-5" />
+				All files
+			</Button>
 		</div>
 	);
 };
