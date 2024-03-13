@@ -1,6 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import DashboardHeader from "@/components/DashboardHeader";
+import FileList from "@/components/FileList";
 import { api } from "@/convex/_generated/api";
 import {
 	LogoutLink,
@@ -26,7 +27,6 @@ const DashboardPage = () => {
 		const result = await convex.query(api.user.getUser, {
 			email: user?.email,
 		});
-		console.log("result : ", result);
 		if (!result?.length) {
 			createUser({
 				name: user.given_name,
@@ -39,11 +39,9 @@ const DashboardPage = () => {
 	};
 
 	return (
-		<div>
-			DashboardPage
-			<Button>
-				<LogoutLink>logout</LogoutLink>
-			</Button>
+		<div className="p-8">
+			<DashboardHeader />
+			<FileList />
 		</div>
 	);
 };

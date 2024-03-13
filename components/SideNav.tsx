@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SideNavTopSection, { TEAM } from "./SideNavTopSection";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import SideNavBottomSection from "./SideNavBottomSection";
 import { useConvex, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
+import { FileListContext } from "@/app/_Context/FilesListContext";
 
 const SideNav = () => {
 	const { user }: any = useKindeBrowserClient();
@@ -12,6 +13,7 @@ const SideNav = () => {
 	const [activeTeam, setActiveTeam] = useState<TEAM>();
 	const [totalFiles, setTotalFiles] = useState<Number>();
 	const convex = useConvex();
+	const { fileList_, setFileList_ } = useContext(FileListContext);
 
 	useEffect(() => {
 		activeTeam && getFiles();
@@ -22,6 +24,7 @@ const SideNav = () => {
 			teamId: activeTeam?._id,
 		});
 		setTotalFiles(result.length);
+		setFileList_(result);
 	};
 
 	const onFileCreate = (fileName: string) => {
