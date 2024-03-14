@@ -13,6 +13,9 @@ import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
 
 import { useEffect, useRef, useState } from "react";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 
 const rawDocument = {
 	time: 1656954000000,
@@ -36,14 +39,43 @@ const rawDocument = {
 	version: "2.8.1",
 };
 
-const Editor = () => {
+const Editor = ({ onSaveTrigger, fileId, fileData }: any) => {
 	const [document, setDocument] = useState(rawDocument);
+	const updateDocument = useMutation(api.files.updateDocument);
 
 	useEffect(() => {
-		initEditor();
-	}, []);
+		fileData && initEditor();
+	}, [fileData]);
+
+	useEffect(() => {
+		console.log("on save trigger", onSaveTrigger);
+		onSaveTrigger && onSaveDocument();
+	}, [onSaveTrigger]);
 
 	const ref = useRef<EditorJS>();
+
+	const onSaveDocument = () => {
+		if (ref.current) {
+			ref.current
+				.save()
+				.then((outputData) => {
+					console.log("Article data: ", outputData);
+					updateDocument({
+						_id: fileId,
+						document: JSON.stringify(outputData),
+					})
+						.then((res) => {
+							toast.success("Document updated!");
+						})
+						.catch((error) => {
+							toast.error("Saving failed: ", error);
+						});
+				})
+				.catch((error) => {
+					console.log("Saving failed: ", error);
+				});
+		}
+	};
 
 	const initEditor = () => {
 		const editor = new EditorJS({
@@ -78,7 +110,7 @@ const Editor = () => {
 				},
 			},
 			holder: "editorjs",
-			data: document,
+			data: fileData.document ? JSON.parse(fileData.document) : rawDocument,
 		});
 
 		ref.current = editor;

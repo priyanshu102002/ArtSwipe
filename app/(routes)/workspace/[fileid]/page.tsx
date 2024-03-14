@@ -1,15 +1,41 @@
+"use client";
+
 import Editor from "@/components/Editor";
 import WorkspaceHeader from "@/components/WorkspaceHeader";
-import React from "react";
+import { api } from "@/convex/_generated/api";
+import { useConvex } from "convex/react";
+import React, { useEffect, useState } from "react";
 
-const WorkspacePage = () => {
+const WorkspacePage = ({ params }: any) => {
+	const [triggerSave, setTriggerSave] = useState(false);
+	const [fileData, setFileData] = useState<any>();
+
+	// Fetching file information(data of the document)
+	const convex = useConvex();
+
+	useEffect(() => {
+		console.log("fileId", params.fileid);
+		params.fileid && getFilesData();
+	}, []);
+
+	const getFilesData = async () => {
+		const result = await convex.query(api.files.getFileById, {
+			_id: params.fileid,
+		});
+		setFileData(result);
+	};
+
 	return (
 		<div>
-			<WorkspaceHeader />
+			<WorkspaceHeader onSave={() => setTriggerSave(!triggerSave)} />
 			<div className="grid grid-cols-1 md:grid-cols-2 h-screen">
 				{/* Document */}
 				<div>
-					<Editor />
+					<Editor
+						onSaveTrigger={triggerSave}
+						fileId={params.fileid}
+						fileData={fileData}
+					/>
 				</div>
 
 				{/* Canvas */}
