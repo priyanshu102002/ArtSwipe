@@ -41,7 +41,11 @@ const WorkspacePage = ({ params }: any) => {
 
 				{/* Canvas */}
 				<div className="border-l">
-					<Canvas />
+					<Canvas
+						onSaveTrigger={triggerSave}
+						fileId={params.fileid}
+						fileData={fileData}
+					/>
 				</div>
 			</div>
 		</div>
