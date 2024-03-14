@@ -1,5 +1,6 @@
 "use client";
 
+import Canvas from "@/components/Canvas";
 import Editor from "@/components/Editor";
 import WorkspaceHeader from "@/components/WorkspaceHeader";
 import { api } from "@/convex/_generated/api";
@@ -39,7 +40,9 @@ const WorkspacePage = ({ params }: any) => {
 				</div>
 
 				{/* Canvas */}
-				<div className="bg-blue-400">Canvas</div>
+				<div className="border-l">
+					<Canvas />
+				</div>
 			</div>
 		</div>
 	);
