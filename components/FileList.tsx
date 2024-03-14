@@ -13,6 +13,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 
+export interface FILE {
+	archive: boolean;
+	createdBt: string;
+	document: string;
+	fileName: string;
+	teamId: string;
+	whiteboard: string;
+	_id: string;
+	_creationTime: number;
+}
+
 const FileList = () => {
 	const { fileList_, setFileList_ } = useContext(FileListContext);
 	const [fileList, setFileList] = useState<any>();
