@@ -14,12 +14,12 @@ const Header = () => {
 					<nav aria-label="Global" className="hidden md:block">
 						<ul className="flex items-center gap-6 text-sm">
 							<li>
-								<a
+								<Link
 									className="text-gray-200 transition hover:text-gray-400 dark:text-white dark:hover:text-white/75"
 									href="#"
 								>
 									About
-								</a>
+								</Link>
 							</li>
 
 							<li>
@@ -30,51 +30,18 @@ const Header = () => {
 									Careers
 								</a>
 							</li>
-
-							<li>
-								<a
-									className="text-gray-200 transition hover:text-gray-400 dark:text-white dark:hover:text-white/75"
-									href="#"
-								>
-									Services
-								</a>
-							</li>
-
-							<li>
-								<a
-									className="text-gray-200 transition hover:text-gray-400 dark:text-white dark:hover:text-white/75"
-									href="#"
-								>
-									Projects
-								</a>
-							</li>
-
-							<li>
-								<a
-									className="text-gray-200 transition hover:text-gray-400 dark:text-white dark:hover:text-white/75"
-									href="#"
-								>
-									Blog
-								</a>
-							</li>
 						</ul>
 					</nav>
 
 					<div className="flex items-center gap-4">
 						<div className="sm:flex sm:gap-4">
-							<a
-								className="block rounded-md  px-5 py-2.5 text-sm font-medium text-white transition "
-								href="#"
-							>
+							<div className="block rounded-md  px-5 py-2.5 text-sm font-medium text-white transition ">
 								<LoginLink>Login</LoginLink>
-							</a>
+							</div>
 
-							<a
-								className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-black transition hover:text-gray-950 sm:block dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-								href="#"
-							>
+							<div className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-black transition hover:text-gray-950 sm:block dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
 								<RegisterLink>Register</RegisterLink>
-							</a>
+							</div>
 						</div>
 
 						<button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden dark:bg-gray-800 dark:text-white dark:hover:text-white/75">

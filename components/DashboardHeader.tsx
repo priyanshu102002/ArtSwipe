@@ -18,13 +18,15 @@ const DashboardHeader = () => {
 			</div>
 
 			<div>
-				<Image
-					src={user?.picture}
-					width={30}
-					height={30}
-					alt="user image"
-					className="rounded-full"
-				/>
+				{user && (
+					<Image
+						src={user?.picture}
+						width={30}
+						height={30}
+						alt="user image"
+						className="rounded-full"
+					/>
+				)}
 			</div>
 
 			<Button className="gap-2 flex h-8 hover:bg-blue-700 bg-blue-500 text-sm">

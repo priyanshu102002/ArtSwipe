@@ -45,15 +45,15 @@ const SideNavTopSection = ({ user, setActiveTeamInfo }: any) => {
 	const router = useRouter();
 	const convex = useConvex();
 	const [teamList, setTeamList] = useState<TEAM[]>();
-	const [activeTeam, setActiveTeam] = useState<TEAM[]>();
+	const [activeTeam, setActiveTeam] = useState<TEAM>();
 
 	// Whenever the user is present get the team list
 	useEffect(() => {
-		getTeamList();
+		user && getTeamList();
 	}, [user]);
 
 	useEffect(() => {
-		activeTeam && setActiveTeamInfo(activeTeam);
+		activeTeam ? setActiveTeamInfo(activeTeam) : null;
 	}, [activeTeam]);
 
 	// fetching the team list data from backend
@@ -78,9 +78,10 @@ const SideNavTopSection = ({ user, setActiveTeamInfo }: any) => {
 					<div className="flex items-center gap-3 p-2 hover:bg-gray-200 rounded-md cursor-pointer">
 						<Image
 							src={"/logo.png"}
-							alt="logo"
+							alt="logo image"
 							width={100}
 							height={100}
+							priority={true}
 						/>
 						<h2 className=" flex gap-2 items-center">
 							{activeTeam?.teamName} <ChevronDown />{" "}
@@ -126,7 +127,7 @@ const SideNavTopSection = ({ user, setActiveTeamInfo }: any) => {
 					{user && (
 						<div className="mt-2 flex gap-2 items-center">
 							<Image
-								src={user.picture}
+								src={user?.picture || " "}
 								alt="user image"
 								width={30}
 								height={30}

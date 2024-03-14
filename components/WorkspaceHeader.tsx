@@ -8,7 +8,7 @@ const WorkspaceHeader = ({onSave}:any) => {
 	return (
 		<div className="p-3 border-b flex justify-between items-center">
 			<div className="flex gap-2 items-center">
-				<Image src="/logo.png" alt="logo" height={40} width={40} />
+				<Image src={"/logo.png"} alt="logo" height={40} width={40} priority={true} />
 				<h2>FileName</h2>
 			</div>
 			<div className="flex gap-4">
